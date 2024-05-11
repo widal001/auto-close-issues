@@ -1,0 +1,39 @@
+name: "Auto-close issues"
+description: "Automatically close issues that are marked as 'Done' in a project but still open"
+inputs:
+  owner:
+    description: "The owner of the project"
+    required: true
+  owner-type:
+    description: "Is the project owner an organization or a user?"
+    required: false
+    default: "organization"
+  project-number:
+    description: "The number of the project"
+    required: true
+  status:
+    description: "Which status indicates an issue is 'Done'?"
+    required: true
+  batch-size:
+    description: "The number of project items to return per API call"
+    required: false
+    default: "100"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Close issues
+      run: |
+        ./close-done-issues.sh \
+          --owner "${OWNER}" \
+          --owner-type "${OWNER_TYPE}" \
+          --project $PROJECT \
+          --status "${STATUS}" \
+          --batch $BATCH
+      shell: bash
+      env:
+        OWNER: ${{ inputs.owner }}
+        OWNER_TYPE: ${{ inputs.owner-type }}
+        PROJECT: ${{ inputs.project-number }}
+        STATUS: ${{ inputs.status }}
+        BATCH: ${{ inputs.batch-size }}

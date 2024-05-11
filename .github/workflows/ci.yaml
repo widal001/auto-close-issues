@@ -1,0 +1,20 @@
+name: CI - Test auto-close action
+
+on:
+  workflow_call:
+  pull_request:
+
+jobs:
+  lint-test:
+    name: Run auto-close issues
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN_PROJECT_ACCESS }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        with:
+          owner: widal001
+          owner-type: user
+          project-number: "3"
+          status: "✅ Done"
