@@ -22,6 +22,13 @@ inputs:
 runs:
   using: "composite"
   steps:
+    # This step allows other repos to invoke the shell script in this repo
+    - name: Set GitHub Path
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      shell: bash
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
+
     - name: Close issues
       run: |
         close-done-issues.sh \
