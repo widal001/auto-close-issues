@@ -1,4 +1,4 @@
-name: "Auto-close issues"
+name: "Close done issues"
 description: "Automatically close issues that are marked as 'Done' in a project but still open"
 inputs:
   owner:
@@ -24,7 +24,7 @@ runs:
   steps:
     - name: Close issues
       run: |
-        ./close-done-issues.sh \
+        close-done-issues.sh \
           --owner "${OWNER}" \
           --owner-type "${OWNER_TYPE}" \
           --project $PROJECT \
