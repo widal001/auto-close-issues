@@ -88,7 +88,7 @@ to_close_file="./tmp/open-issues-that-are-done.txt"
 query=$(cat ./get-project-data.graphql)
 
 # print the parsed variables for debugging
-echo "Finding open issues in the '${status}' column of GitHub project: ${login}/${project}"
+echo "Finding open issues in the '${status}' column of https://github.com/${owner_prefix}/${login}/projects/${project}"
 
 # get all tickets from the project with:
 # URL, open/closed state in the repo, and status on the project
