@@ -8,6 +8,9 @@
 #  --dry-run # optionally print items to close before actually closing them
 # Closes issues that are in the "Done" column on a project but still open in the repo
 
+# exit with non-zero status if any of the following commands fail
+set -e
+
 # parse command line args with format `--option arg`
 # see this stack overflow for more details:
 # https://stackoverflow.com/a/14203146/7338319
